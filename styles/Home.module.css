@@ -10,6 +10,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  justify-content: flex-start;
+  padding-top: 3rem;
 }
 
 .footer {
@@ -116,14 +118,29 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
+}
+
+.mainNav ul {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.mainNav ul li {
+  list-style: none;
+  font-weight: bold;
+  margin: 0 24px;
 }

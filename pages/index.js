@@ -10,15 +10,30 @@ export default function Home() {
         <title>Huting Coder</title>
         <meta
           name="description"
+          content="A blog for hunting coders by a hunting coder"
+        />
+
+        <meta
+          name="keywords"
           content="nextjs, huntingcoder blog, huntingcoder"
         />
+
         <link rel="icon" href="/favicon.ico" />
         {/* We can do this but not recommended */}
         {/* <script src="/sc.js"></script> */}
       </Head>
 
+      <nav className={styles.mainNav}>
+        <ul>
+          <li>Home</li>
+          <li>Blog</li>
+          <li>About</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+
       {/* To use any external script, nextjs recommended this */}
-      <Script src="/sc.js" strategy="lazyOnload"></Script>
+      {/* <Script src="/sc.js" strategy="lazyOnload"></Script> */}
 
       <main className={styles.main}>
         <h1 className={styles.title}>Hunting Coder</h1>
@@ -27,7 +42,7 @@ export default function Home() {
           A blog for hunting coders by a hunting coder
         </p>
 
-        <div className={styles.grid}>
+        {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
@@ -55,6 +70,26 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div> */}
+
+        <div className="blogs">
+          <h1>Popular Blogs</h1>
+          <div className="blogItem">
+            <h2>How to learn Javascript in 2023</h2>
+            <p>Javascript is the language used to design logic for the web</p>
+          </div>
+          <div className="blogItem">
+            <h2>How to learn Javascript in 2023</h2>
+            <p>Javascript is the language used to design logic for the web</p>
+          </div>
+          <div className="blogItem">
+            <h2>How to learn Javascript in 2023</h2>
+            <p>Javascript is the language used to design logic for the web</p>
+          </div>
+          <div className="blogItem">
+            <h2>How to learn Javascript in 2023</h2>
+            <p>Javascript is the language used to design logic for the web</p>
+          </div>
         </div>
       </main>
 
