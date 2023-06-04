@@ -8,11 +8,14 @@ import styles from "../styles/Home.module.css";
 // import "../styles/style.css";
 import Link from "next/link";
 import Script from "next/script";
+import Dummy from "../components/Dummy";
 
 export default function Home() {
   // console.log(styles);
   return (
     <div className={styles.container}>
+      <Dummy />
+
       <Head>
         <title>Huting Coder</title>
         <meta
@@ -27,12 +30,12 @@ export default function Home() {
 
         <link rel="icon" href="/favicon.ico" />
 
-        <link
+        {/* <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
           crossOrigin="anonymous"
-        />
+        /> */}
 
         {/* We can do this but not recommended */}
         {/* <script src="/sc.js"></script> */}
@@ -40,13 +43,21 @@ export default function Home() {
 
       {/* To use any external script, nextjs recommended this */}
       {/* <Script src="/sc.js" strategy="lazyOnload"></Script> */}
-      <Script
+      {/* <Script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         strategy="lazyOnload"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"
-      ></Script>
+      ></Script> */}
 
+      {/* Style JSX */}
+      <style jsx>
+        {`
+          .mySpan {
+            color: red;
+          }
+        `}
+      </style>
       <nav className={styles.mainNav}>
         <ul>
           <li>
@@ -65,15 +76,18 @@ export default function Home() {
       </nav>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Hunting Coder</h1>
+        {/* <h1 className={`${styles.title} mySpan`}>Hunting Coder</h1> */}
+        <h1 className={styles.title}>
+          <span className="mySpan dummy">Hunting Coder</span>
+        </h1>
 
         <p className={styles.description}>
           A blog for hunting coders by a hunting coder
         </p>
 
-        <div className="alert alert-primary" role="alert">
+        {/* <div className="alert alert-primary" role="alert">
           A simple primary alert—check it out!
-        </div>
+        </div> */}
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
