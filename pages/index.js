@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Script from "next/script";
+// import styles1 from "../styles/Home1.module.css";
+// import styles2 from "../styles/Home2.module.css";
 import Link from "next/link";
 
 export default function Home() {
+  // console.log(styles);
   return (
     <div className={styles.container}>
       <Head>
@@ -81,7 +83,8 @@ export default function Home() {
           </a>
         </div> */}
 
-        <div className="blogs">
+        {/* <div className={`${styles1.con} ${styles2.con}`}> */}
+        <div>
           <h1>Popular Blogs</h1>
           <div className="blogItem">
             <h2>How to learn Javascript in 2023</h2>
