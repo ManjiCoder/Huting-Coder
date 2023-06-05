@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// http://localhost:3000/blogpost/how-to-learn-flask
 
 import * as fs from "node:fs";
 

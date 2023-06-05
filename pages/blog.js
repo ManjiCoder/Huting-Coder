@@ -22,7 +22,7 @@ const Blog = () => {
         {blogs.map((item) => {
           return (
             <div className="blogItem" key={item.title}>
-              <h3>
+              <h3 className={styles.heading}>
                 <Link href={`blogpost/${item.slug}`}>{item.title}</Link>
               </h3>
               <p className={styles.blogItemp}>{item.content.substr(0, 140)}</p>

@@ -1,29 +1,33 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/BlogPost.module.css";
 
 // STEP 1: Find the file corresponding to the slug
 // STEP 2: Populate them inside the page
 
-const slug = () => {
+const Slug = () => {
+  const [blog, setBlog] = useState(null);
   const router = useRouter();
-  console.log(router.query.slug);
-  const { slug } = router.query;
+  console.log({ "router.isReady": router.isReady });
+  useEffect(() => {
+    if (!router.isReady) return;
+    const { slug } = router.query;
+    fetch(`http://localhost:3000/api/getblog?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => setBlog(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1>Title of the page {slug}</h1>
+        <h1>{blog?.title}</h1>
         <hr />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-          provident nulla vero exercitationem dolor numquam unde officiis
-          maiores totam vel iure neque laborum, harum reiciendis tempore saepe,
-          aliquam odit libero voluptas corporis amet rerum.
-        </p>
+        <p>{blog?.content}</p>
       </main>
     </div>
   );
 };
 
-export default slug;
+export default Slug;
