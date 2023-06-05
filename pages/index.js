@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 
 // We can do this but not recommended to use this move it to _app.js
 // import "../styles/style.css";
-import Link from "next/link";
 
 export default function Home() {
   // console.log(styles);
@@ -53,22 +52,6 @@ export default function Home() {
           font-size: 28px;
         }
       `}</style>
-      <nav className={styles.mainNav}>
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
 
       <main className={styles.main}>
         {/* <h1 className={`${styles.title} mySpan`}>Hunting Coder</h1> */}
@@ -83,6 +66,7 @@ export default function Home() {
             height={255}
             alt="Hunting Coder"
             className={styles.myImg}
+            priority
           />
         </div>
 
@@ -126,11 +110,7 @@ export default function Home() {
 
         {/* <div className={`${styles1.con} ${styles2.con}`}> */}
         <div>
-          <h2>Popular Blogs</h2>
-          <div className="blogItem">
-            <h3>How to learn Javascript in 2023</h3>
-            <p>Javascript is the language used to design logic for the web</p>
-          </div>
+          <h2>Latest Blogs</h2>
           <div className="blogItem">
             <h3>How to learn Javascript in 2023</h3>
             <p>Javascript is the language used to design logic for the web</p>
