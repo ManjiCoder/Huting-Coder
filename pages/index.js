@@ -78,7 +78,7 @@ export default function Home() {
       <main className={styles.main}>
         {/* <h1 className={`${styles.title} mySpan`}>Hunting Coder</h1> */}
         <h1 className={styles.title}>
-          <span className="mySpan dummy">Hunting Coder</span>
+          <span className="mySpan">Hunting Coder</span>
         </h1>
 
         <p className={styles.description}>
