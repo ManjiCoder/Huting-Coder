@@ -1,21 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-// import styles1 from "../styles/Home1.module.css";
-// import styles2 from "../styles/Home2.module.css";
 
 // We can do this but not recommended to use this move it to _app.js
 // import "../styles/style.css";
 import Link from "next/link";
-import Script from "next/script";
-import Dummy from "../components/Dummy";
 
 export default function Home() {
   // console.log(styles);
   return (
     <div className={styles.container}>
-      <Dummy />
-
       <Head>
         <title>Huting Coder</title>
         <meta
@@ -51,13 +45,14 @@ export default function Home() {
       ></Script> */}
 
       {/* Style JSX */}
-      <style jsx>
-        {`
-          .mySpan {
-            color: red;
-          }
-        `}
-      </style>
+      <style jsx>{`
+        h2 {
+          font-size: 38px;
+        }
+        h3 {
+          font-size: 28px;
+        }
+      `}</style>
       <nav className={styles.mainNav}>
         <ul>
           <li>
@@ -80,6 +75,16 @@ export default function Home() {
         <h1 className={styles.title}>
           <span className="mySpan">Hunting Coder</span>
         </h1>
+
+        <div className={styles.imgWrap}>
+          <Image
+            src="/home.jpg"
+            width={386}
+            height={255}
+            alt="Hunting Coder"
+            className={styles.myImg}
+          />
+        </div>
 
         <p className={styles.description}>
           A blog for hunting coders by a hunting coder
@@ -121,38 +126,27 @@ export default function Home() {
 
         {/* <div className={`${styles1.con} ${styles2.con}`}> */}
         <div>
-          <h1>Popular Blogs</h1>
+          <h2>Popular Blogs</h2>
           <div className="blogItem">
-            <h2>How to learn Javascript in 2023</h2>
+            <h3>How to learn Javascript in 2023</h3>
             <p>Javascript is the language used to design logic for the web</p>
           </div>
           <div className="blogItem">
-            <h2>How to learn Javascript in 2023</h2>
+            <h3>How to learn Javascript in 2023</h3>
             <p>Javascript is the language used to design logic for the web</p>
           </div>
           <div className="blogItem">
-            <h2>How to learn Javascript in 2023</h2>
+            <h3>How to learn Javascript in 2023</h3>
             <p>Javascript is the language used to design logic for the web</p>
           </div>
           <div className="blogItem">
-            <h2>How to learn Javascript in 2023</h2>
+            <h3>How to learn Javascript in 2023</h3>
             <p>Javascript is the language used to design logic for the web</p>
           </div>
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <footer className={styles.footer}></footer>
     </div>
   );
 }
