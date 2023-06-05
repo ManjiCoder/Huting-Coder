@@ -8,6 +8,7 @@ import styles from "../../styles/BlogPost.module.css";
 
 const Slug = () => {
   const [blog, setBlog] = useState(null);
+  const [isReadMore, setIsReadMore] = useState(false);
   const router = useRouter();
   console.log({ "router.isReady": router.isReady });
   useEffect(() => {
@@ -24,7 +25,15 @@ const Slug = () => {
       <main className={styles.main}>
         <h1>{blog?.title}</h1>
         <hr />
-        <p>{blog?.content}</p>
+        <p>
+          {isReadMore ? blog?.content : blog?.content.substr(0, 500) + "..."}
+          <button
+            style={{ marginLeft: "10px" }}
+            onClick={() => setIsReadMore(!isReadMore)}
+          >
+            {isReadMore ? "Show Less" : "Show More"}
+          </button>
+        </p>
       </main>
     </div>
   );
