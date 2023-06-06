@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import * as fs from "node:fs";
+import React, { useState } from "react";
 import styles from "../../styles/BlogPost.module.css";
 
 // STEP 1: Find the file corresponding to the slug
@@ -10,6 +10,7 @@ const Slug = (props) => {
   // console.log(props.blog);
   const [blog, setBlog] = useState(props.blog);
   const [isReadMore, setIsReadMore] = useState(false);
+
   // const router = useRouter();
   // console.log({ "router.isReady": router.isReady });
   // useEffect(() => {
@@ -40,12 +41,33 @@ const Slug = (props) => {
   );
 };
 
-// SSR
-export const getServerSideProps = async (context) => {
-  // console.log(context.query);
-  const { slug } = context.query;
-  const res = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
-  const blog = await res.json();
-  return { props: { blog } };
+// SSG
+export const getStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { slug: "how-to-learn-flask" } }, // See the "paths" section below
+      { params: { slug: "how-to-learn-javascript" } }, // See the "paths" section below
+      { params: { slug: "how-to-learn-nextjs" } }, // See the "paths" section below
+    ],
+    fallback: true, // false or "blocking"
+  };
 };
+
+export const getStaticProps = async (context) => {
+  // Add API Logic Here
+  const { slug } = context.params;
+  const blog = await fs.promises.readFile(`blogdata/${slug}.json`, "utf-8");
+  return { props: { blog: JSON.parse(blog) } };
+};
+
+// SSR
+// export const getServerSideProps = async (context) => {
+//   // console.log(context.query);
+//   // console.log(context.params);
+//   const { slug } = context.query;
+//   // const { slug } = context.params;
+//   const res = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
+//   const blog = await res.json();
+//   return { props: { blog } };
+// };
 export default Slug;

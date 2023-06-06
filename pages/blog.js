@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import * as fs from "node:fs";
+
+import React, { useState } from "react";
 import styles from "../styles/Blog.module.css";
 import Link from "next/link";
 
@@ -6,7 +8,7 @@ import Link from "next/link";
 // STEP 2: Iterate through the & Display them
 
 const Blog = (props) => {
-  // console.log(props);
+  // console.log(props.allBlogs);
   const [blogs, setBlogs] = useState(props.allBlogs);
   // useEffect(() => {
   //   console.log("useEffect is running");
@@ -35,11 +37,23 @@ const Blog = (props) => {
   );
 };
 
-// SSR
-export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/blogs");
-  const allBlogs = await res.json();
+// SSG
+export const getStaticProps = async () => {
+  // Add API Logic Here
+  let data = await fs.promises.readdir("blogdata", "utf8");
+  let allBlogs = [];
+  for (let item of data) {
+    let result = await fs.promises.readFile(`blogdata/${item}`, "utf-8");
+    allBlogs.push(JSON.parse(result));
+  }
   return { props: { allBlogs } };
 };
+
+// SSR
+// export const getServerSideProps = async () => {
+//   const res = await fetch("http://localhost:3000/api/blogs");
+//   const allBlogs = await res.json();
+//   return { props: { allBlogs } };
+// };
 
 export default Blog;

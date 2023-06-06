@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 // We can do this but not recommended to use this move it to _app.js
@@ -60,13 +60,21 @@ export default function Home() {
         </h1>
 
         <div className={styles.imgWrap}>
-          <Image
+          {/* <Image
             src="/home.jpg"
             width={386}
             height={255}
             alt="Hunting Coder"
             className={styles.myImg}
             priority
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/home.jpg"
+            width={386}
+            height={255}
+            alt="Hunting Coder"
+            className={styles.myImg}
           />
         </div>
 
