@@ -24,7 +24,7 @@ const Blog = (props) => {
       <main className={styles.main}>
         {blogs.map((item) => {
           return (
-            <div className="blogItem" key={item.title}>
+            <div className={styles.blogItem} key={item.title}>
               <h3 className={styles.heading}>
                 <Link href={`blogpost/${item.slug}`}>{item.title}</Link>
               </h3>
