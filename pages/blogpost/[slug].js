@@ -7,6 +7,9 @@ import styles from "../../styles/BlogPost.module.css";
 // STEP 2: Populate them inside the page
 
 const Slug = (props) => {
+  function createMarkup(c) {
+    return { __html: c };
+  }
   // console.log(props.blog);
   const [blog, setBlog] = useState(props.blog);
   const [isReadMore, setIsReadMore] = useState(false);
@@ -27,15 +30,15 @@ const Slug = (props) => {
       <main className={styles.main}>
         <h1>{blog?.title}</h1>
         <hr />
-        <p>
-          {isReadMore ? blog?.content : blog?.content.substr(0, 500) + "..."}
+        <div dangerouslySetInnerHTML={createMarkup(blog?.content)}>
+          {/* {isReadMore ? blog?.content : blog?.content.substr(0, 500) + "..."}
           <button
             style={{ marginLeft: "10px" }}
             onClick={() => setIsReadMore(!isReadMore)}
           >
             {isReadMore ? "Show Less" : "Show More"}
-          </button>
-        </p>
+          </button> */}
+        </div>
       </main>
     </div>
   );
@@ -43,12 +46,20 @@ const Slug = (props) => {
 
 // SSG
 export const getStaticPaths = async () => {
+  let files = await fs.promises.readdir("blogdata", "utf8");
+  let pathsArr = files.map((item) => {
+    item = item.replace(".json", "");
+    let obj = { slug: item };
+    return { params: obj };
+  });
+  // console.log(pathsArr);
   return {
-    paths: [
-      { params: { slug: "how-to-learn-flask" } }, // See the "paths" section below
-      { params: { slug: "how-to-learn-javascript" } }, // See the "paths" section below
-      { params: { slug: "how-to-learn-nextjs" } }, // See the "paths" section below
-    ],
+    paths: pathsArr,
+    // paths: [
+    //   { params: { slug: "how-to-learn-flask" } }, // See the "paths" section below
+    //   { params: { slug: "how-to-learn-javascript" } }, // See the "paths" section below
+    //   { params: { slug: "how-to-learn-nextjs" } }, // See the "paths" section below
+    // ],
     fallback: true, // false or "blocking"
   };
 };

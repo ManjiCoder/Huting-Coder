@@ -5,6 +5,7 @@ import * as fs from "node:fs";
 
 export default async function handler(req, res) {
   let data = await fs.promises.readdir("blogdata", "utf8");
+  // console.log(data);
   let allBlogs = [];
   for (let item of data) {
     let result = await fs.promises.readFile(`blogdata/${item}`, "utf-8");
