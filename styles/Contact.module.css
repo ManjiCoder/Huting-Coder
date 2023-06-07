@@ -42,3 +42,14 @@
     font-size: 0.7rem;
     font-weight: 500;
 }
+
+@media (max-width:600px) {
+    .container {
+        max-width: 90vw;
+        padding: 0 2rem;
+    }
+
+    .h1 {
+        font-size: 1.75rem;
+    }
+}

@@ -6,4 +6,16 @@
 
 .center {
     text-align: center;
+    padding-top: 1rem;
+}
+
+@media (max-width:600px) {
+    .container {
+        max-width: 90vw;
+        padding: 0 2rem;
+    }
+
+    .center {
+        font-size: 1.75rem;
+    }
 }
