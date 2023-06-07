@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import * as fs from "node:fs";
+// import * as fs from "node:fs";
 import React, { useState } from "react";
 import styles from "../../styles/BlogPost.module.css";
 
@@ -45,40 +45,40 @@ const Slug = (props) => {
 };
 
 // SSG
-export const getStaticPaths = async () => {
-  let files = await fs.promises.readdir("blogdata", "utf8");
-  let pathsArr = files.map((item) => {
-    item = item.replace(".json", "");
-    let obj = { slug: item };
-    return { params: obj };
-  });
-  // console.log(pathsArr);
-  return {
-    paths: pathsArr,
-    // paths: [
-    //   { params: { slug: "how-to-learn-flask" } }, // See the "paths" section below
-    //   { params: { slug: "how-to-learn-javascript" } }, // See the "paths" section below
-    //   { params: { slug: "how-to-learn-nextjs" } }, // See the "paths" section below
-    // ],
-    fallback: true, // false or "blocking"
-  };
-};
+// export const getStaticPaths = async () => {
+//   let files = await fs.promises.readdir("blogdata", "utf8");
+//   let pathsArr = files.map((item) => {
+//     item = item.replace(".json", "");
+//     let obj = { slug: item };
+//     return { params: obj };
+//   });
+//   // console.log(pathsArr);
+//   return {
+//     paths: pathsArr,
+//     // paths: [
+//     //   { params: { slug: "how-to-learn-flask" } }, // See the "paths" section below
+//     //   { params: { slug: "how-to-learn-javascript" } }, // See the "paths" section below
+//     //   { params: { slug: "how-to-learn-nextjs" } }, // See the "paths" section below
+//     // ],
+//     fallback: true, // false or "blocking"
+//   };
+// };
 
-export const getStaticProps = async (context) => {
-  // Add API Logic Here
-  const { slug } = context.params;
-  const blog = await fs.promises.readFile(`blogdata/${slug}.json`, "utf-8");
-  return { props: { blog: JSON.parse(blog) } };
-};
+// export const getStaticProps = async (context) => {
+//   // Add API Logic Here
+//   const { slug } = context.params;
+//   const blog = await fs.promises.readFile(`blogdata/${slug}.json`, "utf-8");
+//   return { props: { blog: JSON.parse(blog) } };
+// };
 
 // SSR
-// export const getServerSideProps = async (context) => {
-//   // console.log(context.query);
-//   // console.log(context.params);
-//   const { slug } = context.query;
-//   // const { slug } = context.params;
-//   const res = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
-//   const blog = await res.json();
-//   return { props: { blog } };
-// };
+export const getServerSideProps = async (context) => {
+  // console.log(context.query);
+  // console.log(context.params);
+  const { slug } = context.query;
+  // const { slug } = context.params;
+  const res = await fetch(`http://localhost:3000/api/getblog?slug=${slug}`);
+  const blog = await res.json();
+  return { props: { blog } };
+};
 export default Slug;
