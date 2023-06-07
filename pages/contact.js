@@ -2,112 +2,114 @@ import React, { useState } from "react";
 import styles from "../styles/Contact.module.css";
 
 const Contact = () => {
-  const [userInfo, setUserInfo] = useState({
+  const initialState = {
     name: "",
     email: "",
     phone: "",
     desc: "",
-  });
+  };
+  const [contactInfo, setContactInfo] = useState(initialState);
 
   const handleOnChange = (e) => {
-    setUserInfo((old) => {
+    setContactInfo((old) => {
       // console.log(old);
       return {
-        ...userInfo,
+        ...contactInfo,
         [e.target.name]: e.target.value,
       };
     });
-    console.log(e.target.name);
+    // console.log(e.target.name);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInfo);
+    // console.log(contactInfo);
     // API Call
     fetch("http://localhost:3000/api/contact", {
       method: "POST",
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(contactInfo),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.text())
       .then((data) => {
         console.log("Success");
         alert("Thanks for contacting us");
-        setUserInfo({
-          name: "",
-          email: "",
-          phone: "",
-          desc: "",
-        });
+        setUserInfo(initialState);
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <div className={styles.container}>
-      <h1>Contact Us</h1>
-      <form method="POST" onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+      <h1 className={styles.h1}>Contact Us</h1>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.mb3}>
+          <label htmlFor="name" className={styles.formLabel}>
             Name
           </label>
           <input
             type="text"
-            className="form-control"
+            className={styles.formcontrol}
             id="name"
             name="name"
             aria-describedby="emailHelp"
             onChange={handleOnChange}
-            value={userInfo.name}
+            value={contactInfo.name}
+            required
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+        <div className={styles.mb3}>
+          <label htmlFor="email" className={styles.formLabel}>
             Email
           </label>
           <input
             type="text"
-            className="form-control"
+            className={styles.formcontrol}
             id="email"
             name="email"
             aria-describedby="emailHelp"
             onChange={handleOnChange}
-            value={userInfo.email}
+            value={contactInfo.email}
+            required
           />
-          <div id="emailHelp" className="form-text">
+          <div id="emailHelp" className={styles.formText}>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             We'll never share your email with anyone else.
           </div>
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="phone" className="form-label">
+        <div className={styles.mb3}>
+          <label htmlFor="phone" className={styles.formLabel}>
             Phone
           </label>
           <input
             type="number"
-            className="form-control"
+            className={styles.formcontrol}
             id="phone"
             name="phone"
             onChange={handleOnChange}
-            value={userInfo.phone}
+            value={contactInfo.phone}
+            required
           />
         </div>
 
-        <div className="form-floating">
-          <label htmlFor="desc">Elabourate your concern</label>
+        <div className={styles.mb3}>
+          <label htmlFor="desc" className={styles.formLabel}>
+            Elabourate your concern
+          </label>
           <textarea
-            className="form-control"
+            className={styles.formcontrol}
             placeholder="Write your concern here"
             id="desc"
             name="desc"
             onChange={handleOnChange}
-            value={userInfo.desc}
+            value={contactInfo.desc}
+            required
           ></textarea>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={styles.btn}>
           Submit
         </button>
       </form>
